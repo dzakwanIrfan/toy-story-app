@@ -1,0 +1,136 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>Welcome to Andy's Room</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="toy-story-login-bg">
+  <ion-header collapse="condense">
+    <ion-toolbar color="warning">
+      <ion-title size="large">Welcome to Andy's Room</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="login-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Toy Access Portal</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-item lines="full" class="toy-input">
+          <ion-icon name="person-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Toy Name</ion-label>
+          <ion-input type="text" [(ngModel)]="username" required="required"></ion-input>
+        </ion-item>
+
+        <ion-item lines="full" class="toy-input">
+          <ion-icon name="key-outline" slot="start" color="warning"></ion-icon>
+          <ion-label position="floating">Secret Code</ion-label>
+          <ion-input type="password" [(ngModel)]="password" required="required"></ion-input>
+        </ion-item>
+
+        <ion-row class="ion-padding-top">
+          <ion-col>
+            <ion-button type="submit" color="success" expand="block" shape="round" (click)="login()">
+              <ion-icon name="rocket-outline" slot="start"></ion-icon>
+              To Infinity and Beyond!
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col class="ion-text-center">
+            <ion-button fill="clear" color="warning" routerLink="/register">
+              <ion-icon name="star-outline" slot="start"></ion-icon>
+              Join Andy's Toy Collection
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<style>
+.toy-story-login-bg {
+  --background: linear-gradient(135deg, #87CEEB 0%, #FFD700 100%);
+}
+
+.login-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.login-card {
+  max-width: 400px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  border: 3px solid #FFD700;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.toy-input {
+  margin: 10px 0;
+  --background: transparent;
+  --border-color: #FFD700;
+  --highlight-color-focused: #4CAF50;
+}
+
+ion-card-title {
+  color: #FFD700;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+ion-button {
+  --border-radius: 25px;
+  font-weight: bold;
+}
+
+ion-button[color="success"] {
+  --background: #4CAF50;
+  margin: 20px 0;
+}
+
+ion-icon {
+  font-size: 20px;
+}
+
+.toy-input,
+ion-item {
+  --highlight-color-focused: #4CAF50;
+  --color: #000000;
+  --color-floating: #666666;
+  --background: transparent;
+  --border-color: #FFD700;
+  margin: 10px 0;
+}
+
+.toy-input ion-input::placeholder,
+ion-item ion-input::placeholder {
+  color: #666666;
+}
+
+ion-input {
+  --color: #000000 !important;
+  font-weight: 500;
+}
+
+ion-label {
+  color: #666666 !important;
+}
+
+ion-card ion-label {
+  color: #000000 !important;
+}
+
+ion-card p {
+  color: #333333 !important;
+}
+</style>

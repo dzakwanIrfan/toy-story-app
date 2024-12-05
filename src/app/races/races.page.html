@@ -1,0 +1,137 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="warning">
+    <ion-title>Andy's Toy Collection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="toy-story-bg">
+  <!-- Logout Button dengan icon woody -->
+  <ion-item (click)="logout()" color="light">
+    <ion-icon slot="start" name="exit-outline"></ion-icon>
+    <ion-label>Sign Out from Andy's Room</ion-label>
+  </ion-item>
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Andy's Toy Collection</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- button tambah dengan tema woody -->
+  <ion-card color="warning">
+    <ion-button (click)="openModalTambah(true)" expand="block" color="success">
+      <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+      Add New Toy to Collection
+    </ion-button>
+  </ion-card>
+
+  <!-- modal tambah -->
+  <ion-modal [isOpen]="modalTambah" (ionModalDidDismiss)="cancel()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="warning">
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Add New Toy</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding toy-modal-bg">
+        <ion-item>
+          <ion-input label="Toy Name" labelPlacement="floating" required [(ngModel)]="name" placeholder="Enter Toy Name" type="text">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Toy Story' labelPlacement="floating" required [(ngModel)]="story" placeholder="Tell us about this toy's story" type="text">
+          </ion-input>
+        </ion-item>
+        <ion-row>
+          <ion-col>
+            <ion-button type="button" (click)="addRaces()" color="success" shape="round" expand="block">
+              <ion-icon name="star-outline" slot="start"></ion-icon>
+              Add to Collection
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- modal edit -->
+  <ion-modal [isOpen]="modalEdit" (ionModalDidDismiss)="cancel()">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar color="warning">
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Modify Toy Details</ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding toy-modal-bg">
+        <ion-item>
+          <ion-input label="Toy Name" labelPlacement="floating" required [(ngModel)]="name" placeholder="Enter Toy Name" type="text">
+          </ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input label='Toy Story' labelPlacement="floating" required [(ngModel)]="story" placeholder="Tell us about this toy's story" type="text">
+          </ion-input>
+        </ion-item>
+        <ion-input required [(ngModel)]="id" type="hidden">
+        </ion-input>
+        <ion-row>
+          <ion-col>
+            <ion-button type="button" (click)="editRaces()" color="success" shape="round" expand="block">
+              <ion-icon name="create-outline" slot="start"></ion-icon>
+              Update Toy Details
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <ion-card *ngFor="let item of dataRaces" class="toy-card">
+    <ion-item>
+      <ion-icon name="game-controller-outline" slot="start" color="warning"></ion-icon>
+      <ion-label>
+        <h2>{{item.name}}</h2>
+        <p>{{item.story}}</p>
+      </ion-label>
+      <ion-button color="danger" slot="end" (click)="deleteRaces(item.id)">
+        <ion-icon name="trash-outline" slot="start"></ion-icon>
+        Remove
+      </ion-button>
+      <ion-button color="success" (click)="openModalEdit(true,item.id)">
+        <ion-icon name="create-outline" slot="start"></ion-icon>
+        Modify
+      </ion-button>
+    </ion-item>
+  </ion-card>
+</ion-content>
+
+<style>
+.toy-story-bg {
+  --background: linear-gradient(180deg, #87CEEB 0%, #FFFFFF 100%);
+}
+
+.toy-modal-bg {
+  --background: #FFFFFF;
+}
+
+.toy-card {
+  border: 2px solid #FFD700;
+  border-radius: 10px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+ion-toolbar {
+  --background: #FFD700;
+  --color: #FFFFFF;
+}
+
+ion-button {
+  --border-radius: 20px;
+}
+</style>
